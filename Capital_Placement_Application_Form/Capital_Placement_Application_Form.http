@@ -1,0 +1,6 @@
+@Capital_Placement_Application_Form_HostAddress = http://localhost:5172
+
+GET {{Capital_Placement_Application_Form_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
