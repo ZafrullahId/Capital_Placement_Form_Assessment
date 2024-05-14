@@ -5,6 +5,7 @@ using Persistence.Context;
 using Microsoft.EntityFrameworkCore;
 using Application.Exceptions;
 using System.Reflection;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,7 +21,15 @@ builder.Services.AddDbContext<ApplicationFormContext>(options =>
     options.UseCosmos(builder.Configuration["CapitalCosmosdbConnectionString"],
     databaseName: "Capital_Placement_Form_db"
 ));
-
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .CreateLogger();
+Log.Information("starting server.");
+builder.Host.UseSerilog((context, loggerConfiguration) =>
+{
+    loggerConfiguration.WriteTo.Console();
+    loggerConfiguration.ReadFrom.Configuration(context.Configuration);
+});
 builder.Services.AddCors(c => c
                 .AddPolicy("CorsPolicy", builder => builder
                 .AllowAnyHeader()
