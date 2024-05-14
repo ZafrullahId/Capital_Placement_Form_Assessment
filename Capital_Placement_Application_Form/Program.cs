@@ -15,6 +15,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// This is for local development, Change it to yours or to the hosted db on Azure
 builder.Services.AddDbContext<ApplicationFormContext>(options =>
     options.UseCosmos(builder.Configuration["CapitalCosmosdbConnectionString"],
     databaseName: "Capital_Placement_Form_db"
