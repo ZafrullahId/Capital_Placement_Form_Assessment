@@ -39,9 +39,9 @@ namespace Application.Services
                 applicationWindow.Title = request.Title ?? applicationWindow.Title;
                 applicationWindow.Description = request.Description ?? applicationWindow.Description;
                 await _applicationProgramRepository.UpdateAsync(applicationWindow);
-                return await Result<bool>.SuccessAsync();
+                return await Result<bool>.SuccessAsync("Successfully Updated");
             }
-            return await Result<bool>.FailAsync();
+            return await Result<bool>.FailAsync("Application Window not found");
         }
     }
 }
