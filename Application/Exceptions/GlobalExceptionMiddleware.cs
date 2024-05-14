@@ -4,6 +4,7 @@ using System.Net;
 using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Application.Exceptions
 {
@@ -23,10 +24,15 @@ namespace Application.Exceptions
         private void HandleException(HttpContext context, Exception exception)
         {
             logger.LogError(exception, exception.Message);
+            context.Response.StatusCode = exception switch
+            {
+                BaseException e => (int)e.StatusCode,
+                _ => StatusCodes.Status500InternalServerError,
+            };
 
             var problemDetails = new ProblemDetails
             {
-                Status = (int)HttpStatusCode.InternalServerError,
+                Status = context.Response.StatusCode,
                 Title = "An internal server error occurred.",
                 Detail = exception.Message,
             };

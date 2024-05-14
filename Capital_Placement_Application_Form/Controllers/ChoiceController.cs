@@ -22,8 +22,8 @@ namespace Host.Controllers
         /// <returns>This endpoint returns bool indicating success value accompanied with a message</returns>
         [HttpPost("{questionId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateMultipleChoiceAsync(CreateChoiceRequest request, Guid questionId)
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public async Task<IActionResult> CreateMultipleChoiceAsync(CreateChoiceRequest request,[FromRoute] Guid questionId)
         {
             var response = await _choiceService.CreateMultipleChoiceOptions(request, questionId);
             return Ok(response);

@@ -36,7 +36,7 @@ namespace Host.Controllers
         [HttpPut("{applicationProgramWindowId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateApplicationProgramWindowAsync(UpdateApplicationProgramRequest request, Guid applicationProgramWindowId)
+        public async Task<IActionResult> UpdateApplicationProgramWindowAsync(UpdateApplicationProgramRequest request, [FromRoute] Guid applicationProgramWindowId)
         {
             var response = await _applicationProgramService.UpdateApplicationProgramWindowAsync(request, applicationProgramWindowId);
             return Ok(response);

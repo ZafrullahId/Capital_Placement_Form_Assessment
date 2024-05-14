@@ -24,7 +24,7 @@ namespace Host.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateSubmissionAsync(CreateSubmissionRequest request, Guid formWindowId)
+        public async Task<IActionResult> CreateSubmissionAsync(CreateSubmissionRequest request, [FromRoute] Guid formWindowId)
         {
             var response = await _submissionService.CreateSubmissionAsync(request, formWindowId);
             return Ok(response);

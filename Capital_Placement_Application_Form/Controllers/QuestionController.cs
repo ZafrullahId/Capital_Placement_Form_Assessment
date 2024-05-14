@@ -25,7 +25,7 @@ namespace Host.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> CreateQuestionAsync(CreateQuestionRequest request, Guid formWindowId)
+        public async Task<IActionResult> CreateQuestionAsync(CreateQuestionRequest request, [FromRoute] Guid formWindowId)
         {
             var response = await _questionService.CreateQuestionAsync(request, formWindowId);
             return Ok(response);
@@ -40,7 +40,7 @@ namespace Host.Controllers
         [HttpPut("{questionId}")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> UpdateQuestionAsync(UpdateQuestionRequest request, Guid questionId)
+        public async Task<IActionResult> UpdateQuestionAsync(UpdateQuestionRequest request, [FromRoute] Guid questionId)
         {
             var response = await _questionService.UpdateQuestionAsync(request, questionId);
             return Ok(response);

@@ -20,7 +20,7 @@ namespace Application.Model.Dtos.Request
         public string? Nationality { get; set; }
         public string? CurrentResidence { get; set; }
         public string? IDNumber { get; set; }
-        public DateOnly DateOfBirth { get; set; }
+        //public DateOnly DateOfBirth { get; set; }
         public Gender? Gender { get; set; }
     }
 }
